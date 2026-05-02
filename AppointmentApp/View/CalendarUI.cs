@@ -1,0 +1,56 @@
+using AppointmentApp.Controller;
+using AppointmentApp.Model;
+
+namespace AppointmentApp.View;
+
+public partial class CalendarUI : Form
+{
+    private readonly AppointmentController _controller;
+    private readonly string _currentUserId;
+
+    public CalendarUI(AppointmentController controller, string currentUserId)
+    {
+        _controller = controller;
+        _currentUserId = currentUserId;
+        InitializeComponent();
+    }
+
+    public DateTime GetActiveDateTime()
+    {
+        return activeDatePicker.Value;
+    }
+
+    public void OpenAddAppointmentWindow()
+    {
+        using var win = new AddAppointmentWindow(_controller, _currentUserId, GetActiveDateTime());
+        win.ShowDialog(this);
+        RefreshAppointmentList();
+    }
+
+    public void RefreshAppointmentList()
+    {
+        appointmentsList.Items.Clear();
+        var appointments = _controller.GetAppointmentsForUser();
+
+        foreach (var app in appointments)
+        {
+            var type = app is GroupMeeting ? "Group" : "Personal";
+            var item = new ListViewItem(app.Name);
+            item.SubItems.Add(app.Location);
+            item.SubItems.Add(app.StartTime.ToString("yyyy-MM-dd HH:mm"));
+            item.SubItems.Add(app.EndTime.ToString("yyyy-MM-dd HH:mm"));
+            item.SubItems.Add(type);
+            appointmentsList.Items.Add(item);
+        }
+    }
+
+    private void CalendarUI_Load(object sender, EventArgs e)
+    {
+        RefreshAppointmentList();
+    }
+
+    private void addAppointmentButton_Click(object sender, EventArgs e)
+    {
+        OpenAddAppointmentWindow();
+    }
+}

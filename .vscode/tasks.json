@@ -1,0 +1,72 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run AppointmentApp",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"AppointmentApp"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run AppointmentApp",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"AppointmentApp"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run AppointmentApp (verbose)",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"AppointmentApp",
+				"--verbosity",
+				"normal"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run AppointmentApp",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"AppointmentApp"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run AppointmentApp",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"AppointmentApp"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}

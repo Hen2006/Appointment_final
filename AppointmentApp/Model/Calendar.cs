@@ -1,0 +1,117 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace AppointmentApp.Model;
+
+public class Calendar
+{
+    private readonly AppDbContext _db;
+    private readonly string _userId;
+
+    public Calendar(AppDbContext db, string userId)
+    {
+        _db = db;
+        _userId = userId;
+    }
+
+    public Appointment AddAppointment(string name, string location, DateTime start, DateTime end)
+    {
+        var app = new Appointment
+        {
+            Name = name,
+            Location = location,
+            StartTime = start,
+            EndTime = end,
+            OwnerUserId = _userId
+        };
+
+        _db.Appointments.Add(app);
+        _db.SaveChanges();
+        return app;
+    }
+
+    public void DeleteAppointment(string appId)
+    {
+        var app = _db.Appointments.FirstOrDefault(a => a.AppId == appId);
+        if (app == null)
+        {
+            return;
+        }
+
+        _db.Appointments.Remove(app);
+        _db.SaveChanges();
+    }
+
+    public bool IsTimeConflict(DateTime start, DateTime end)
+    {
+        return FindFirstConflict(start, end) != null;
+    }
+
+    public Appointment? FindFirstConflict(DateTime start, DateTime end)
+    {
+        var personalConflict = _db.Appointments
+            .Where(a => a.OwnerUserId == _userId)
+            .OrderBy(a => a.StartTime)
+            .FirstOrDefault(a => Overlaps(start, end, a.StartTime, a.EndTime));
+
+        if (personalConflict != null)
+        {
+            return personalConflict;
+        }
+
+        var groupConflict = _db.GroupMeetings
+            .Include(g => g.Participants)
+            .OrderBy(g => g.StartTime)
+            .FirstOrDefault(g => g.Participants.Any(p => p.UserId == _userId)
+                                 && Overlaps(start, end, g.StartTime, g.EndTime));
+
+        return groupConflict;
+    }
+
+    public void AddReminder(Appointment app, DateTime reminderTime, string type)
+    {
+        if (_db.Entry(app).State == EntityState.Detached)
+        {
+            _db.Attach(app);
+        }
+
+        var reminder = new Reminder
+        {
+            ReminderTime = reminderTime,
+            Type = type,
+            AppointmentId = app.AppId
+        };
+
+        app.AddReminder(reminder);
+        _db.Reminders.Add(reminder);
+        _db.SaveChanges();
+    }
+
+    public Appointment? GetAppointmentById(string appId)
+    {
+        return _db.Appointments
+            .Include(a => a.Reminders)
+            .FirstOrDefault(a => a.AppId == appId);
+    }
+
+    public List<Appointment> GetAppointments()
+    {
+        var personal = _db.Appointments
+            .Where(a => a.OwnerUserId == _userId)
+            .ToList();
+
+        var groups = _db.GroupMeetings
+            .Include(g => g.Participants)
+            .Where(g => g.Participants.Any(p => p.UserId == _userId))
+            .ToList();
+
+        return personal
+            .Concat(groups)
+            .OrderBy(a => a.StartTime)
+            .ToList();
+    }
+
+    private static bool Overlaps(DateTime start, DateTime end, DateTime otherStart, DateTime otherEnd)
+    {
+        return start < otherEnd && end > otherStart;
+    }
+}

@@ -1,0 +1,42 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace AppointmentApp.Model;
+
+public sealed class AppDbContext : DbContext
+{
+    public const string ConnectionString = "Server=DESKTOP-IHI30RF;Database=AppointmentFinalDb2;Trusted_Connection=True;TrustServerCertificate=True";
+
+    public DbSet<Appointment> Appointments => Set<Appointment>();
+    public DbSet<GroupMeeting> GroupMeetings => Set<GroupMeeting>();
+    public DbSet<Reminder> Reminders => Set<Reminder>();
+    public DbSet<User> Users => Set<User>();
+
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Appointment>()
+            .HasKey(a => a.AppId);
+
+        modelBuilder.Entity<Appointment>()
+            .HasMany(a => a.Reminders)
+            .WithOne(r => r.Appointment)
+            .HasForeignKey(r => r.AppointmentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Appointment>()
+            .HasDiscriminator<string>("AppointmentType")
+            .HasValue<Appointment>("Personal")
+            .HasValue<GroupMeeting>("Group");
+
+        modelBuilder.Entity<GroupMeeting>()
+            .HasMany(g => g.Participants)
+            .WithMany()
+            .UsingEntity(j => j.ToTable("GroupMeetingParticipants"));
+
+        modelBuilder.Entity<User>()
+            .HasKey(u => u.UserId);
+    }
+}
