@@ -1,0 +1,7 @@
+# Visual Studio cache
+.vs/
+*.user
+
+# Build results
+[Bb]in/
+[Oo]bj/
