@@ -7,17 +7,42 @@ public partial class AddAppointmentWindow : Form
 {
     private readonly AppointmentController _controller;
     private readonly string _currentUserId;
+    private readonly Appointment? _existingApp;
     private readonly List<Reminder> _reminders = new();
 
-    public AddAppointmentWindow(AppointmentController controller, string currentUserId, DateTime selectedDate)
+    public AddAppointmentWindow(AppointmentController controller, string currentUserId, DateTime selectedDate, Appointment? existingApp = null)
     {
         _controller = controller;
         _currentUserId = currentUserId;
+        _existingApp = existingApp;
         InitializeComponent();
 
-        startPicker.Value = selectedDate;
-        endPicker.Value = selectedDate.AddHours(1);
-        reminderTimePicker.Value = selectedDate;
+        if (_existingApp != null)
+        {
+            Text = "Edit Appointment";
+            nameTextBox.Text = _existingApp.Name;
+            locationTextBox.Text = _existingApp.Location;
+            startPicker.Value = _existingApp.StartTime;
+            endPicker.Value = _existingApp.EndTime;
+            reminderTimePicker.Value = _existingApp.StartTime;
+
+            if (_existingApp.Reminders != null)
+            {
+                foreach (var r in _existingApp.Reminders)
+                {
+                    _reminders.Add(r);
+                    var item = new ListViewItem(r.ReminderTime.ToString("yyyy-MM-dd HH:mm"));
+                    item.Tag = r;
+                    remindersList.Items.Add(item);
+                }
+            }
+        }
+        else
+        {
+            startPicker.Value = selectedDate;
+            endPicker.Value = selectedDate.AddHours(1);
+            reminderTimePicker.Value = selectedDate;
+        }
     }
 
     public bool ValidateBasic(string name, DateTime start, DateTime end)
@@ -77,24 +102,37 @@ public partial class AddAppointmentWindow : Form
 
     private void addReminderButton_Click(object sender, EventArgs e)
     {
-        var type = reminderTypeTextBox.Text.Trim();
-        if (string.IsNullOrWhiteSpace(type))
+        var time = reminderTimePicker.Value;
+        if (_reminders.Any(r => r.ReminderTime.ToString("yyyy-MM-dd HH:mm") == time.ToString("yyyy-MM-dd HH:mm")))
         {
-            MessageBox.Show("Reminder type is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Reminder already exists for this time.", "Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
         var reminder = new Reminder
         {
-            ReminderTime = reminderTimePicker.Value,
-            Type = type
+            ReminderTime = time
         };
 
         _reminders.Add(reminder);
         var item = new ListViewItem(reminder.ReminderTime.ToString("yyyy-MM-dd HH:mm"));
-        item.SubItems.Add(reminder.Type);
+        item.Tag = reminder;
         remindersList.Items.Add(item);
-        reminderTypeTextBox.Clear();
+    }
+
+    private void removeReminderButton_Click(object sender, EventArgs e)
+    {
+        if (remindersList.SelectedItems.Count == 0)
+        {
+            return;
+        }
+
+        var selectedItem = remindersList.SelectedItems[0];
+        if (selectedItem.Tag is Reminder r)
+        {
+            _reminders.Remove(r);
+            remindersList.Items.Remove(selectedItem);
+        }
     }
 
     private void saveButton_Click(object sender, EventArgs e)
@@ -107,6 +145,14 @@ public partial class AddAppointmentWindow : Form
         if (!ValidateBasic(name, start, end))
         {
             ShowValidationError();
+            return;
+        }
+
+        if (_existingApp != null)
+        {
+            _controller.UpdateAppointment(_existingApp.AppId, name, location, start, end, new List<Reminder>(_reminders));
+            ShowSuccessMessage("Appointment updated.");
+            Close();
             return;
         }
 

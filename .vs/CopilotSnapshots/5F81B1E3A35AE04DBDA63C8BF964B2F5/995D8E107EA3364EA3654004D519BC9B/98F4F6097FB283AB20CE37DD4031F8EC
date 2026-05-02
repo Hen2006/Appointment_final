@@ -1,0 +1,97 @@
+﻿namespace AppointmentApp.View;
+
+partial class CalendarUI
+{
+    private System.ComponentModel.IContainer components = null;
+    private Label activeDateLabel;
+    private DateTimePicker activeDatePicker;
+    private Button addAppointmentButton;
+    private ListView appointmentsList;
+    private ColumnHeader nameColumn;
+    private ColumnHeader locationColumn;
+    private ColumnHeader startColumn;
+    private ColumnHeader endColumn;
+    private ColumnHeader typeColumn;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    private void InitializeComponent()
+    {
+        components = new System.ComponentModel.Container();
+        activeDateLabel = new Label();
+        activeDatePicker = new DateTimePicker();
+        addAppointmentButton = new Button();
+        appointmentsList = new ListView();
+        nameColumn = new ColumnHeader();
+        locationColumn = new ColumnHeader();
+        startColumn = new ColumnHeader();
+        endColumn = new ColumnHeader();
+        typeColumn = new ColumnHeader();
+        SuspendLayout();
+
+        activeDateLabel.AutoSize = true;
+        activeDateLabel.Location = new Point(16, 16);
+        activeDateLabel.Name = "activeDateLabel";
+        activeDateLabel.Size = new Size(71, 15);
+        activeDateLabel.TabIndex = 0;
+        activeDateLabel.Text = "Active date";
+
+        activeDatePicker.CustomFormat = "yyyy-MM-dd HH:mm";
+        activeDatePicker.Format = DateTimePickerFormat.Custom;
+        activeDatePicker.Location = new Point(110, 12);
+        activeDatePicker.Name = "activeDatePicker";
+        activeDatePicker.Size = new Size(180, 23);
+        activeDatePicker.TabIndex = 1;
+
+        addAppointmentButton.Location = new Point(310, 11);
+        addAppointmentButton.Name = "addAppointmentButton";
+        addAppointmentButton.Size = new Size(150, 25);
+        addAppointmentButton.TabIndex = 2;
+        addAppointmentButton.Text = "Add Appointment";
+        addAppointmentButton.BackColor = Color.LightGreen;
+        addAppointmentButton.UseVisualStyleBackColor = false;
+        addAppointmentButton.Click += addAppointmentButton_Click;
+
+        appointmentsList.Columns.AddRange(new ColumnHeader[] { nameColumn, locationColumn, startColumn, endColumn, typeColumn });
+        appointmentsList.FullRowSelect = true;
+        appointmentsList.GridLines = true;
+        appointmentsList.BackColor = Color.LightYellow;
+        appointmentsList.Location = new Point(16, 50);
+        appointmentsList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        appointmentsList.Name = "appointmentsList";
+        appointmentsList.Size = new Size(760, 380);
+        appointmentsList.TabIndex = 3;
+        appointmentsList.View = System.Windows.Forms.View.Details;
+
+        nameColumn.Text = "Name";
+        nameColumn.Width = 160;
+        locationColumn.Text = "Location";
+        locationColumn.Width = 160;
+        startColumn.Text = "Start";
+        startColumn.Width = 140;
+        endColumn.Text = "End";
+        endColumn.Width = 140;
+        typeColumn.Text = "Type";
+        typeColumn.Width = 100;
+
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(800, 450);
+        BackColor = Color.LightSkyBlue;
+        Controls.Add(appointmentsList);
+        Controls.Add(addAppointmentButton);
+        Controls.Add(activeDatePicker);
+        Controls.Add(activeDateLabel);
+        Name = "CalendarUI";
+        Text = "Calendar";
+        Load += CalendarUI_Load;
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

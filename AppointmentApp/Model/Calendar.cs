@@ -41,6 +41,33 @@ public class Calendar
         _db.SaveChanges();
     }
 
+    public void UpdateAppointment(string appId, string name, string location, DateTime start, DateTime end, List<Reminder> reminders)
+    {
+        var app = _db.Appointments.Include(a => a.Reminders).FirstOrDefault(a => a.AppId == appId);
+        if (app != null)
+        {
+            app.Name = name;
+            app.Location = location;
+            app.StartTime = start;
+            app.EndTime = end;
+
+            _db.Reminders.RemoveRange(app.Reminders);
+            app.Reminders.Clear();
+
+            foreach (var r in reminders)
+            {
+                var newR = new Reminder
+                {
+                    Title = r.Title,
+                    ReminderTime = r.ReminderTime,
+                    AppointmentId = app.AppId
+                };
+                app.AddReminder(newR);
+            }
+            _db.SaveChanges();
+        }
+    }
+
     public bool IsTimeConflict(DateTime start, DateTime end)
     {
         return FindFirstConflict(start, end) != null;
@@ -51,7 +78,7 @@ public class Calendar
         var personalConflict = _db.Appointments
             .Where(a => a.OwnerUserId == _userId)
             .OrderBy(a => a.StartTime)
-            .FirstOrDefault(a => Overlaps(start, end, a.StartTime, a.EndTime));
+            .FirstOrDefault(a => start < a.EndTime && end > a.StartTime);
 
         if (personalConflict != null)
         {
@@ -62,12 +89,12 @@ public class Calendar
             .Include(g => g.Participants)
             .OrderBy(g => g.StartTime)
             .FirstOrDefault(g => g.Participants.Any(p => p.UserId == _userId)
-                                 && Overlaps(start, end, g.StartTime, g.EndTime));
+                                 && start < g.EndTime && end > g.StartTime);
 
         return groupConflict;
     }
 
-    public void AddReminder(Appointment app, DateTime reminderTime, string type)
+    public void AddReminder(Appointment app, DateTime reminderTime, string title)
     {
         if (_db.Entry(app).State == EntityState.Detached)
         {
@@ -76,8 +103,8 @@ public class Calendar
 
         var reminder = new Reminder
         {
+            Title = title,
             ReminderTime = reminderTime,
-            Type = type,
             AppointmentId = app.AppId
         };
 
@@ -108,10 +135,5 @@ public class Calendar
             .Concat(groups)
             .OrderBy(a => a.StartTime)
             .ToList();
-    }
-
-    private static bool Overlaps(DateTime start, DateTime end, DateTime otherStart, DateTime otherEnd)
-    {
-        return start < otherEnd && end > otherStart;
     }
 }

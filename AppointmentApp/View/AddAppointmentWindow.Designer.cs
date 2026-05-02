@@ -13,13 +13,13 @@ partial class AddAppointmentWindow
     private DateTimePicker endPicker;
     private GroupBox remindersGroup;
     private Label reminderTimeLabel;
+    private Label reminderTitleLabel;
+    private TextBox reminderTitleTextBox;
     private DateTimePicker reminderTimePicker;
-    private Label reminderTypeLabel;
-    private TextBox reminderTypeTextBox;
     private Button addReminderButton;
+    private Button removeReminderButton;
     private ListView remindersList;
     private ColumnHeader reminderTimeColumn;
-    private ColumnHeader reminderTypeColumn;
     private Button saveButton;
     private Button cancelButton;
 
@@ -46,12 +46,10 @@ partial class AddAppointmentWindow
         remindersGroup = new GroupBox();
         reminderTimeLabel = new Label();
         reminderTimePicker = new DateTimePicker();
-        reminderTypeLabel = new Label();
-        reminderTypeTextBox = new TextBox();
         addReminderButton = new Button();
+        removeReminderButton = new Button();
         remindersList = new ListView();
         reminderTimeColumn = new ColumnHeader();
-        reminderTypeColumn = new ColumnHeader();
         saveButton = new Button();
         cancelButton = new Button();
         remindersGroup.SuspendLayout();
@@ -111,9 +109,8 @@ partial class AddAppointmentWindow
 
         remindersGroup.Controls.Add(reminderTimeLabel);
         remindersGroup.Controls.Add(reminderTimePicker);
-        remindersGroup.Controls.Add(reminderTypeLabel);
-        remindersGroup.Controls.Add(reminderTypeTextBox);
         remindersGroup.Controls.Add(addReminderButton);
+        remindersGroup.Controls.Add(removeReminderButton);
         remindersGroup.Controls.Add(remindersList);
         remindersGroup.Location = new Point(16, 155);
         remindersGroup.Name = "remindersGroup";
@@ -121,6 +118,7 @@ partial class AddAppointmentWindow
         remindersGroup.TabIndex = 8;
         remindersGroup.TabStop = false;
         remindersGroup.Text = "Reminders";
+        remindersGroup.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
         reminderTimeLabel.AutoSize = true;
         reminderTimeLabel.Location = new Point(10, 28);
@@ -136,19 +134,7 @@ partial class AddAppointmentWindow
         reminderTimePicker.Size = new Size(180, 23);
         reminderTimePicker.TabIndex = 1;
 
-        reminderTypeLabel.AutoSize = true;
-        reminderTypeLabel.Location = new Point(255, 28);
-        reminderTypeLabel.Name = "reminderTypeLabel";
-        reminderTypeLabel.Size = new Size(31, 15);
-        reminderTypeLabel.TabIndex = 2;
-        reminderTypeLabel.Text = "Type";
-
-        reminderTypeTextBox.Location = new Point(300, 24);
-        reminderTypeTextBox.Name = "reminderTypeTextBox";
-        reminderTypeTextBox.Size = new Size(140, 23);
-        reminderTypeTextBox.TabIndex = 3;
-
-        addReminderButton.Location = new Point(450, 23);
+        addReminderButton.Location = new Point(360, 23);
         addReminderButton.Name = "addReminderButton";
         addReminderButton.Size = new Size(90, 25);
         addReminderButton.TabIndex = 4;
@@ -156,7 +142,15 @@ partial class AddAppointmentWindow
         addReminderButton.UseVisualStyleBackColor = true;
         addReminderButton.Click += addReminderButton_Click;
 
-        remindersList.Columns.AddRange(new ColumnHeader[] { reminderTimeColumn, reminderTypeColumn });
+        removeReminderButton.Location = new Point(450, 23);
+        removeReminderButton.Name = "removeReminderButton";
+        removeReminderButton.Size = new Size(90, 25);
+        removeReminderButton.TabIndex = 5;
+        removeReminderButton.Text = "Remove";
+        removeReminderButton.UseVisualStyleBackColor = true;
+        removeReminderButton.Click += removeReminderButton_Click;
+
+        remindersList.Columns.AddRange(new ColumnHeader[] { reminderTimeColumn });
         remindersList.FullRowSelect = true;
         remindersList.GridLines = true;
         remindersList.Location = new Point(10, 60);
@@ -164,30 +158,34 @@ partial class AddAppointmentWindow
         remindersList.Size = new Size(530, 145);
         remindersList.TabIndex = 5;
         remindersList.View = System.Windows.Forms.View.Details;
+        remindersList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
         reminderTimeColumn.Text = "Reminder Time";
         reminderTimeColumn.Width = 180;
-        reminderTypeColumn.Text = "Type";
-        reminderTypeColumn.Width = 120;
 
         saveButton.Location = new Point(316, 390);
         saveButton.Name = "saveButton";
         saveButton.Size = new Size(120, 28);
         saveButton.TabIndex = 9;
         saveButton.Text = "Save";
-        saveButton.UseVisualStyleBackColor = true;
+        saveButton.BackColor = Color.LightGreen;
+        saveButton.UseVisualStyleBackColor = false;
         saveButton.Click += saveButton_Click;
+        saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
         cancelButton.Location = new Point(456, 390);
         cancelButton.Name = "cancelButton";
         cancelButton.Size = new Size(120, 28);
         cancelButton.TabIndex = 10;
         cancelButton.Text = "Cancel";
-        cancelButton.UseVisualStyleBackColor = true;
+        cancelButton.BackColor = Color.LightCoral;
+        cancelButton.UseVisualStyleBackColor = false;
         cancelButton.Click += cancelButton_Click;
+        cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(600, 440);
+        BackColor = Color.Lavender;
         Controls.Add(cancelButton);
         Controls.Add(saveButton);
         Controls.Add(remindersGroup);

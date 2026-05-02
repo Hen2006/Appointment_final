@@ -11,18 +11,20 @@ public class GroupMeetingRepository
         _db = db;
     }
 
-    public List<GroupMeeting> FindGroupMeetingMatch(string name, DateTime start, DateTime end)
+    public List<GroupMeeting> FindGroupMeetingMatch(string name, string location, DateTime start, DateTime end)
     {
         var now = DateTime.Now;
         var trimmedName = name.Trim();
+        var trimmedLoc = location.Trim();
 
         return _db.GroupMeetings
             .Include(g => g.Participants)
             .Where(g => g.EndTime > now)
             .AsEnumerable()
-            // Match same name, exclude past meetings, then check overlap or +/- 30 minutes gap.
             .Where(g => string.Equals(g.Name, trimmedName, StringComparison.OrdinalIgnoreCase))
-            .Where(g => IsOverlapOrClose(start, end, g.StartTime, g.EndTime))
+            .Where(g => string.Equals(g.Location, trimmedLoc, StringComparison.OrdinalIgnoreCase))
+            .Where(g => (start.Year == g.StartTime.Year && start.Month == g.StartTime.Month && start.Day == g.StartTime.Day && start.Hour == g.StartTime.Hour && start.Minute == g.StartTime.Minute) || 
+                        (end.Year == g.EndTime.Year && end.Month == g.EndTime.Month && end.Day == g.EndTime.Day && end.Hour == g.EndTime.Hour && end.Minute == g.EndTime.Minute))
             .OrderBy(g => g.StartTime)
             .ToList();
     }
@@ -54,7 +56,7 @@ public class GroupMeetingRepository
         _db.SaveChanges();
     }
 
-    public void AddReminder(string groupId, DateTime reminderTime, string type)
+    public void AddReminder(string groupId, DateTime reminderTime, string title)
     {
         var group = _db.GroupMeetings.FirstOrDefault(g => g.AppId == groupId);
         if (group == null)
@@ -64,8 +66,8 @@ public class GroupMeetingRepository
 
         var reminder = new Reminder
         {
+            Title = title,
             ReminderTime = reminderTime,
-            Type = type,
             AppointmentId = group.AppId
         };
 

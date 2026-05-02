@@ -31,17 +31,24 @@ public class AppointmentController
         if (_calendar.IsTimeConflict(start, end))
         {
             var conflict = _calendar.FindFirstConflict(start, end);
-            if (conflict == null)
+            if (conflict != null && conflict.Name == name && conflict.Location == location)
             {
-                conflict = new Appointment
-                {
-                    Name = name,
-                    Location = location,
-                    StartTime = start,
-                    EndTime = end
-                };
+               // This is likely the exact exact same group meeting, let it fall through to EvaluateGroupMeetingOrCreate
             }
-            return SubmitResult.Conflict(conflict);
+            else
+            {
+                if (conflict == null)
+                {
+                    conflict = new Appointment
+                    {
+                        Name = name,
+                        Location = location,
+                        StartTime = start,
+                        EndTime = end
+                    };
+                }
+                return SubmitResult.Conflict(conflict);
+            }
         }
 
         // No conflict: continue to group meeting suggestion or create personal appointment.
@@ -92,14 +99,29 @@ public class AppointmentController
         return _calendar.GetAppointments();
     }
 
-    private SubmitResult EvaluateGroupMeetingOrCreate(
+    public Appointment? GetAppointmentById(string appId)
+    {
+        return _calendar.GetAppointmentById(appId);
+    }
+
+    public void DeleteAppointment(string appId)
+    {
+        _calendar.DeleteAppointment(appId);
+    }
+
+    public void UpdateAppointment(string appId, string name, string location, DateTime start, DateTime end, List<Reminder> reminders)
+    {
+        _calendar.UpdateAppointment(appId, name, location, start, end, reminders);
+    }
+
+    public SubmitResult EvaluateGroupMeetingOrCreate(
         string name,
         string location,
         DateTime start,
         DateTime end,
         List<Reminder> reminders)
     {
-        var matchingGroups = _groupRepo.FindGroupMeetingMatch(name, start, end);
+        var matchingGroups = _groupRepo.FindGroupMeetingMatch(name, location, start, end);
         if (matchingGroups.Count > 0)
         {
             return SubmitResult.SuggestGroup(matchingGroups[0]);
@@ -133,7 +155,7 @@ public class AppointmentController
     {
         foreach (var reminder in reminders)
         {
-            _calendar.AddReminder(appointment, reminder.ReminderTime, reminder.Type);
+            _calendar.AddReminder(appointment, reminder.ReminderTime, reminder.Title);
         }
     }
 }

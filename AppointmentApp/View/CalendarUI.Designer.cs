@@ -6,6 +6,8 @@ partial class CalendarUI
     private Label activeDateLabel;
     private DateTimePicker activeDatePicker;
     private Button addAppointmentButton;
+    private Button editAppointmentButton;
+    private Button deleteAppointmentButton;
     private ListView appointmentsList;
     private ColumnHeader nameColumn;
     private ColumnHeader locationColumn;
@@ -28,6 +30,8 @@ partial class CalendarUI
         activeDateLabel = new Label();
         activeDatePicker = new DateTimePicker();
         addAppointmentButton = new Button();
+        editAppointmentButton = new Button();
+        deleteAppointmentButton = new Button();
         appointmentsList = new ListView();
         nameColumn = new ColumnHeader();
         locationColumn = new ColumnHeader();
@@ -55,13 +59,34 @@ partial class CalendarUI
         addAppointmentButton.Size = new Size(150, 25);
         addAppointmentButton.TabIndex = 2;
         addAppointmentButton.Text = "Add Appointment";
-        addAppointmentButton.UseVisualStyleBackColor = true;
+        addAppointmentButton.BackColor = Color.LightGreen;
+        addAppointmentButton.UseVisualStyleBackColor = false;
         addAppointmentButton.Click += addAppointmentButton_Click;
+
+        editAppointmentButton.Location = new Point(470, 11);
+        editAppointmentButton.Name = "editAppointmentButton";
+        editAppointmentButton.Size = new Size(80, 25);
+        editAppointmentButton.TabIndex = 4;
+        editAppointmentButton.Text = "Edit";
+        editAppointmentButton.BackColor = Color.LightBlue;
+        editAppointmentButton.UseVisualStyleBackColor = false;
+        editAppointmentButton.Click += editAppointmentButton_Click;
+
+        deleteAppointmentButton.Location = new Point(560, 11);
+        deleteAppointmentButton.Name = "deleteAppointmentButton";
+        deleteAppointmentButton.Size = new Size(80, 25);
+        deleteAppointmentButton.TabIndex = 5;
+        deleteAppointmentButton.Text = "Delete";
+        deleteAppointmentButton.BackColor = Color.LightCoral;
+        deleteAppointmentButton.UseVisualStyleBackColor = false;
+        deleteAppointmentButton.Click += deleteAppointmentButton_Click;
 
         appointmentsList.Columns.AddRange(new ColumnHeader[] { nameColumn, locationColumn, startColumn, endColumn, typeColumn });
         appointmentsList.FullRowSelect = true;
         appointmentsList.GridLines = true;
+        appointmentsList.BackColor = Color.LightYellow;
         appointmentsList.Location = new Point(16, 50);
+        appointmentsList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         appointmentsList.Name = "appointmentsList";
         appointmentsList.Size = new Size(760, 380);
         appointmentsList.TabIndex = 3;
@@ -80,7 +105,10 @@ partial class CalendarUI
 
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        BackColor = Color.LightSkyBlue;
         Controls.Add(appointmentsList);
+        Controls.Add(editAppointmentButton);
+        Controls.Add(deleteAppointmentButton);
         Controls.Add(addAppointmentButton);
         Controls.Add(activeDatePicker);
         Controls.Add(activeDateLabel);

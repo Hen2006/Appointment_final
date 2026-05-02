@@ -1,7 +1,44 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Document\\OOAD\\Appointment_final\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\OOAD bai tap\\Appointment_final\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\model\\calendar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\model\\calendar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\model\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\model\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\model\\reminder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\model\\reminder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\view\\addappointmentwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\view\\addappointmentwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\model\\groupmeetingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\model\\groupmeetingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\controller\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\controller\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\view\\addappointmentwindow.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\view\\addappointmentwindow.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\view\\calendarui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\view\\calendarui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|d:\\ooad bai tap\\appointment_final\\appointmentapp\\view\\calendarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D5CF8DD-B38A-F066-C52A-DE305A38773B}|AppointmentApp\\AppointmentApp.csproj|solutionrelative:appointmentapp\\view\\calendarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,31 +46,132 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GroupMeetingRepository.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\GroupMeetingRepository.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\Model\\GroupMeetingRepository.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\GroupMeetingRepository.cs",
+              "RelativeToolTip": "AppointmentApp\\Model\\GroupMeetingRepository.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAMBUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:31:04.384Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddAppointmentWindow.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\AddAppointmentWindow.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\View\\AddAppointmentWindow.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\AddAppointmentWindow.cs",
+              "RelativeToolTip": "AppointmentApp\\View\\AddAppointmentWindow.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:30:30.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reminder.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\Reminder.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\Model\\Reminder.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\Reminder.cs",
+              "RelativeToolTip": "AppointmentApp\\Model\\Reminder.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:30:19.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Calendar.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\Calendar.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\Model\\Calendar.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\Calendar.cs",
+              "RelativeToolTip": "AppointmentApp\\Model\\Calendar.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAewHAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:04:10.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CalendarUI.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\CalendarUI.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\View\\CalendarUI.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\CalendarUI.cs",
+              "RelativeToolTip": "AppointmentApp\\View\\CalendarUI.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:40:12.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CalendarUI.Designer.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\CalendarUI.Designer.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\View\\CalendarUI.Designer.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\CalendarUI.Designer.cs",
+              "RelativeToolTip": "AppointmentApp\\View\\CalendarUI.Designer.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:34:31.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Controller\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\Controller\\AppointmentController.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Controller\\AppointmentController.cs",
+              "RelativeToolTip": "AppointmentApp\\Controller\\AppointmentController.cs",
+              "ViewState": "AgIAAJ0AAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:31:24.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddAppointmentWindow.Designer.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\AddAppointmentWindow.Designer.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\View\\AddAppointmentWindow.Designer.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\View\\AddAppointmentWindow.Designer.cs",
+              "RelativeToolTip": "AppointmentApp\\View\\AddAppointmentWindow.Designer.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T17:32:30.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "AppointmentApp\\Model\\AppDbContext.cs",
+              "ToolTip": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\Model\\AppDbContext.cs",
+              "RelativeToolTip": "AppointmentApp\\Model\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T16:56:59.841Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -4,7 +4,7 @@ namespace AppointmentApp.Model;
 
 public sealed class AppDbContext : DbContext
 {
-    public const string ConnectionString = "Server=DESKTOP-IHI30RF;Database=AppointmentFinalDb2;Trusted_Connection=True;TrustServerCertificate=True";
+    public const string ConnectionString = "Server=(localdb)\\mssqllocaldb;Database=AppointmentFinalDb3;Trusted_Connection=True;TrustServerCertificate=True";
 
     public DbSet<Appointment> Appointments => Set<Appointment>();
     public DbSet<GroupMeeting> GroupMeetings => Set<GroupMeeting>();

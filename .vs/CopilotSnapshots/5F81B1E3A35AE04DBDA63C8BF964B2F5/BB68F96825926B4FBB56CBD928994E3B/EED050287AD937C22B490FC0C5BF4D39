@@ -1,0 +1,196 @@
+﻿namespace AppointmentApp.View;
+
+partial class AddAppointmentWindow
+{
+    private System.ComponentModel.IContainer components = null;
+    private Label nameLabel;
+    private TextBox nameTextBox;
+    private Label locationLabel;
+    private TextBox locationTextBox;
+    private Label startLabel;
+    private DateTimePicker startPicker;
+    private Label endLabel;
+    private DateTimePicker endPicker;
+    private GroupBox remindersGroup;
+    private Label reminderTimeLabel;
+    private DateTimePicker reminderTimePicker;
+    private Button addReminderButton;
+    private Button removeReminderButton;
+    private ListView remindersList;
+    private ColumnHeader reminderTimeColumn;
+    private Button saveButton;
+    private Button cancelButton;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    private void InitializeComponent()
+    {
+        components = new System.ComponentModel.Container();
+        nameLabel = new Label();
+        nameTextBox = new TextBox();
+        locationLabel = new Label();
+        locationTextBox = new TextBox();
+        startLabel = new Label();
+        startPicker = new DateTimePicker();
+        endLabel = new Label();
+        endPicker = new DateTimePicker();
+        remindersGroup = new GroupBox();
+        reminderTimeLabel = new Label();
+        reminderTimePicker = new DateTimePicker();
+        addReminderButton = new Button();
+        removeReminderButton = new Button();
+        remindersList = new ListView();
+        reminderTimeColumn = new ColumnHeader();
+        saveButton = new Button();
+        cancelButton = new Button();
+        remindersGroup.SuspendLayout();
+        SuspendLayout();
+
+        nameLabel.AutoSize = true;
+        nameLabel.Location = new Point(16, 18);
+        nameLabel.Name = "nameLabel";
+        nameLabel.Size = new Size(42, 15);
+        nameLabel.TabIndex = 0;
+        nameLabel.Text = "Name";
+
+        nameTextBox.Location = new Point(110, 15);
+        nameTextBox.Name = "nameTextBox";
+        nameTextBox.Size = new Size(300, 23);
+        nameTextBox.TabIndex = 1;
+
+        locationLabel.AutoSize = true;
+        locationLabel.Location = new Point(16, 52);
+        locationLabel.Name = "locationLabel";
+        locationLabel.Size = new Size(54, 15);
+        locationLabel.TabIndex = 2;
+        locationLabel.Text = "Location";
+
+        locationTextBox.Location = new Point(110, 49);
+        locationTextBox.Name = "locationTextBox";
+        locationTextBox.Size = new Size(300, 23);
+        locationTextBox.TabIndex = 3;
+
+        startLabel.AutoSize = true;
+        startLabel.Location = new Point(16, 86);
+        startLabel.Name = "startLabel";
+        startLabel.Size = new Size(32, 15);
+        startLabel.TabIndex = 4;
+        startLabel.Text = "Start";
+
+        startPicker.CustomFormat = "yyyy-MM-dd HH:mm";
+        startPicker.Format = DateTimePickerFormat.Custom;
+        startPicker.Location = new Point(110, 82);
+        startPicker.Name = "startPicker";
+        startPicker.Size = new Size(180, 23);
+        startPicker.TabIndex = 5;
+
+        endLabel.AutoSize = true;
+        endLabel.Location = new Point(16, 120);
+        endLabel.Name = "endLabel";
+        endLabel.Size = new Size(27, 15);
+        endLabel.TabIndex = 6;
+        endLabel.Text = "End";
+
+        endPicker.CustomFormat = "yyyy-MM-dd HH:mm";
+        endPicker.Format = DateTimePickerFormat.Custom;
+        endPicker.Location = new Point(110, 116);
+        endPicker.Name = "endPicker";
+        endPicker.Size = new Size(180, 23);
+        endPicker.TabIndex = 7;
+
+        remindersGroup.Controls.Add(reminderTimeLabel);
+        remindersGroup.Controls.Add(reminderTimePicker);
+        remindersGroup.Controls.Add(addReminderButton);
+        remindersGroup.Controls.Add(remindersList);
+        remindersGroup.Location = new Point(16, 155);
+        remindersGroup.Name = "remindersGroup";
+        remindersGroup.Size = new Size(560, 220);
+        remindersGroup.TabIndex = 8;
+        remindersGroup.TabStop = false;
+        remindersGroup.Text = "Reminders";
+        remindersGroup.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+        reminderTimeLabel.AutoSize = true;
+        reminderTimeLabel.Location = new Point(10, 28);
+        reminderTimeLabel.Name = "reminderTimeLabel";
+        reminderTimeLabel.Size = new Size(37, 15);
+        reminderTimeLabel.TabIndex = 0;
+        reminderTimeLabel.Text = "Time";
+
+        reminderTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
+        reminderTimePicker.Format = DateTimePickerFormat.Custom;
+        reminderTimePicker.Location = new Point(60, 24);
+        reminderTimePicker.Name = "reminderTimePicker";
+        reminderTimePicker.Size = new Size(180, 23);
+        reminderTimePicker.TabIndex = 1;
+
+        addReminderButton.Location = new Point(450, 23);
+        addReminderButton.Name = "addReminderButton";
+        addReminderButton.Size = new Size(90, 25);
+        addReminderButton.TabIndex = 4;
+        addReminderButton.Text = "Add";
+        addReminderButton.UseVisualStyleBackColor = true;
+        addReminderButton.Click += addReminderButton_Click;
+
+        remindersList.Columns.AddRange(new ColumnHeader[] { reminderTimeColumn });
+        remindersList.FullRowSelect = true;
+        remindersList.GridLines = true;
+        remindersList.Location = new Point(10, 60);
+        remindersList.Name = "remindersList";
+        remindersList.Size = new Size(530, 145);
+        remindersList.TabIndex = 5;
+        remindersList.View = System.Windows.Forms.View.Details;
+        remindersList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+        reminderTimeColumn.Text = "Reminder Time";
+        reminderTimeColumn.Width = 180;
+
+        saveButton.Location = new Point(316, 390);
+        saveButton.Name = "saveButton";
+        saveButton.Size = new Size(120, 28);
+        saveButton.TabIndex = 9;
+        saveButton.Text = "Save";
+        saveButton.BackColor = Color.LightGreen;
+        saveButton.UseVisualStyleBackColor = false;
+        saveButton.Click += saveButton_Click;
+        saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+        cancelButton.Location = new Point(456, 390);
+        cancelButton.Name = "cancelButton";
+        cancelButton.Size = new Size(120, 28);
+        cancelButton.TabIndex = 10;
+        cancelButton.Text = "Cancel";
+        cancelButton.BackColor = Color.LightCoral;
+        cancelButton.UseVisualStyleBackColor = false;
+        cancelButton.Click += cancelButton_Click;
+        cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(600, 440);
+        BackColor = Color.Lavender;
+        Controls.Add(cancelButton);
+        Controls.Add(saveButton);
+        Controls.Add(remindersGroup);
+        Controls.Add(endPicker);
+        Controls.Add(endLabel);
+        Controls.Add(startPicker);
+        Controls.Add(startLabel);
+        Controls.Add(locationTextBox);
+        Controls.Add(locationLabel);
+        Controls.Add(nameTextBox);
+        Controls.Add(nameLabel);
+        Name = "AddAppointmentWindow";
+        Text = "Add Appointment";
+        remindersGroup.ResumeLayout(false);
+        remindersGroup.PerformLayout();
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

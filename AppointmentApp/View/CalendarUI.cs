@@ -36,6 +36,7 @@ public partial class CalendarUI : Form
         {
             var type = app is GroupMeeting ? "Group" : "Personal";
             var item = new ListViewItem(app.Name);
+            item.Tag = app;
             item.SubItems.Add(app.Location);
             item.SubItems.Add(app.StartTime.ToString("yyyy-MM-dd HH:mm"));
             item.SubItems.Add(app.EndTime.ToString("yyyy-MM-dd HH:mm"));
@@ -52,5 +53,43 @@ public partial class CalendarUI : Form
     private void addAppointmentButton_Click(object sender, EventArgs e)
     {
         OpenAddAppointmentWindow();
+    }
+
+    private void editAppointmentButton_Click(object sender, EventArgs e)
+    {
+        if (appointmentsList.SelectedItems.Count == 0)
+        {
+            MessageBox.Show("Please select an appointment to edit.", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var selectedItem = appointmentsList.SelectedItems[0];
+        if (selectedItem.Tag is Appointment app)
+        {
+            var fullApp = _controller.GetAppointmentById(app.AppId) ?? app;
+            using var win = new AddAppointmentWindow(_controller, _currentUserId, GetActiveDateTime(), fullApp);
+            win.ShowDialog(this);
+            RefreshAppointmentList();
+        }
+    }
+
+    private void deleteAppointmentButton_Click(object sender, EventArgs e)
+    {
+        if (appointmentsList.SelectedItems.Count == 0)
+        {
+            MessageBox.Show("Please select an appointment to delete.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var selectedItem = appointmentsList.SelectedItems[0];
+        if (selectedItem.Tag is Appointment app)
+        {
+            var confirm = MessageBox.Show($"Are you sure you want to delete '{app.Name}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                _controller.DeleteAppointment(app.AppId);
+                RefreshAppointmentList();
+            }
+        }
     }
 }

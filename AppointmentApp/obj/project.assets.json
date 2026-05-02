@@ -2882,23 +2882,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell PC\\.nuget\\packages\\": {},
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Document\\OOAD\\Appointment_final\\AppointmentApp\\AppointmentApp.csproj",
+      "projectUniqueName": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\AppointmentApp.csproj",
       "projectName": "AppointmentApp",
-      "projectPath": "D:\\Document\\OOAD\\Appointment_final\\AppointmentApp\\AppointmentApp.csproj",
-      "packagesPath": "C:\\Users\\Dell PC\\.nuget\\packages\\",
-      "outputPath": "D:\\Document\\OOAD\\Appointment_final\\AppointmentApp\\obj\\",
+      "projectPath": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\AppointmentApp.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "D:\\OOAD bai tap\\Appointment_final\\AppointmentApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dell PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2907,6 +2907,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2977,7 +2978,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,91 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace AppointmentApp.Model;
+
+public class GroupMeetingRepository
+{
+    private readonly AppDbContext _db;
+
+    public GroupMeetingRepository(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    public List<GroupMeeting> FindGroupMeetingMatch(string name, string location, DateTime start, DateTime end)
+    {
+        var now = DateTime.Now;
+        var trimmedName = name.Trim();
+        var trimmedLoc = location.Trim();
+
+        return _db.GroupMeetings
+            .Include(g => g.Participants)
+            .Where(g => g.EndTime > now)
+            .AsEnumerable()
+            .Where(g => string.Equals(g.Name, trimmedName, StringComparison.OrdinalIgnoreCase))
+            .Where(g => string.Equals(g.Location, trimmedLoc, StringComparison.OrdinalIgnoreCase))
+            .Where(g => start == g.StartTime && end == g.EndTime)
+            .OrderBy(g => g.StartTime)
+            .ToList();
+    }
+
+    public void AddParticipant(string groupId, string userId)
+    {
+        var group = _db.GroupMeetings
+            .Include(g => g.Participants)
+            .FirstOrDefault(g => g.AppId == groupId);
+
+        if (group == null)
+        {
+            return;
+        }
+
+        var user = _db.Users.FirstOrDefault(u => u.UserId == userId);
+        if (user == null)
+        {
+            user = new User
+            {
+                UserId = userId,
+                Name = userId,
+                Email = $"{userId}@demo.local"
+            };
+            _db.Users.Add(user);
+        }
+
+        group.AddParticipant(user);
+        _db.SaveChanges();
+    }
+
+    public void AddReminder(string groupId, DateTime reminderTime)
+    {
+        var group = _db.GroupMeetings.FirstOrDefault(g => g.AppId == groupId);
+        if (group == null)
+        {
+            return;
+        }
+
+        var reminder = new Reminder
+        {
+            ReminderTime = reminderTime,
+            AppointmentId = group.AppId
+        };
+
+        _db.Reminders.Add(reminder);
+        group.AddReminder(reminder);
+        _db.SaveChanges();
+    }
+
+    private static bool IsOverlapOrClose(DateTime start, DateTime end, DateTime otherStart, DateTime otherEnd)
+    {
+        var overlap = start < otherEnd && end > otherStart;
+        if (overlap)
+        {
+            return true;
+        }
+
+        var gapAfter = otherStart - end;
+        var gapBefore = start - otherEnd;
+        var withinGapAfter = gapAfter.TotalMinutes >= 0 && gapAfter.TotalMinutes <= 30;
+        var withinGapBefore = gapBefore.TotalMinutes >= 0 && gapBefore.TotalMinutes <= 30;
+        return withinGapAfter || withinGapBefore;
+    }
+}
